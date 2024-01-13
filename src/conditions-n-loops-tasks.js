@@ -124,8 +124,46 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let minor = '';
+  if (num > 0 || num % 10 < 4) {
+    for (let i = 0; i < num % 10; i += 1) {
+      minor += 'I';
+    }
+  }
+  if (num % 10 === 4) {
+    minor = 'IV';
+  }
+  if (num % 10 >= 5 && num % 10 !== 9) {
+    minor = 'V';
+  }
+  if (num % 10 >= 6 && num % 10 < 9) {
+    for (let i = 0; i < (num % 10) - 5; i += 1) {
+      minor += 'I';
+    }
+  }
+  if (num % 10 === 9) {
+    minor = 'IX';
+  }
+  if (num > 10 && num < 20 && num !== 10) {
+    minor = `X${minor}`;
+  }
+  if (num > 20 && num < 30 && num !== 20) {
+    minor = `XX${minor}`;
+  }
+  if (num > 30 && num < 40 && num !== 30) {
+    minor = `XXX${minor}`;
+  }
+  if (num === 10) {
+    minor = 'X';
+  }
+  if (num === 20) {
+    minor = 'XX';
+  }
+  if (num === 30) {
+    minor = 'XXX';
+  }
+  return minor;
 }
 
 /**
@@ -143,8 +181,58 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let str = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (i < numberStr.length && i !== 0) {
+      str += ' ';
+    }
+    switch (numberStr[i]) {
+      case '-':
+        str += 'minus';
+        break;
+      case '0':
+        str += 'zero';
+        break;
+      case '1':
+        str += 'one';
+        break;
+      case '2':
+        str += 'two';
+        break;
+      case '3':
+        str += 'three';
+        break;
+      case '4':
+        str += 'four';
+        break;
+      case '5':
+        str += 'five';
+        break;
+      case '6':
+        str += 'six';
+        break;
+      case '7':
+        str += 'seven';
+        break;
+      case '8':
+        str += 'eight';
+        break;
+      case '9':
+        str += 'nine';
+        break;
+      case '.':
+        str += 'point';
+        break;
+      case ',':
+        str += 'point';
+        break;
+      default:
+        str = '';
+        break;
+    }
+  }
+  return str;
 }
 
 /**
